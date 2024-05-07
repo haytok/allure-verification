@@ -15,10 +15,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
@@ -37,6 +33,7 @@ jobs:
       with:
         ref: gh-pages
         path: gh-pages
+        token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Build test report
       uses: simple-elf/allure-report-action@v1.7
