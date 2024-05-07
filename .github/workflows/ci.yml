@@ -27,7 +27,7 @@ jobs:
       run: go test -v ./...
 
     - name: Load test report history
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       if: always()
       continue-on-error: true
       with:
@@ -50,3 +50,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
         publish_dir: allure-history
+        token: ${{secrets.GITHUB_TOKEN}}
