@@ -28,6 +28,8 @@ jobs:
         echo ==========
         pwd
         echo ==========
+        ls
+        echo ==========
         go test -v ./...
 
     - name: Load test report history
