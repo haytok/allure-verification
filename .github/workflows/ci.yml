@@ -11,54 +11,56 @@ on:
   #   branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.22'
+      - name: Clone repository
+        uses: actions/checkout@v4.1.1
 
-    # - name: Build
-    #   run: go build -v ./...
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
 
-    - name: Test
-      run: | 
-        echo ==========
-        pwd
-        echo ==========
-        ls
-        echo ==========
-        go test -v ./...
-        echo ==========
-        go list ./...
-        echo ==========
-        go test $(go list ./...) -shuffle on
-        echo ==========
+      # - name: Build
+      #   run: go build -v ./...
 
-    - name: Load test report history
-      uses: actions/checkout@v2
-      if: always()
-      continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages
-        token: ${{secrets.GITHUB_TOKEN}}
+      - name: Test
+        run: | 
+          echo ==========
+          pwd
+          echo ==========
+          ls
+          echo ==========
+          go test -v ./...
+          echo ==========
+          go list ./...
+          echo ==========
+          go test $(go list ./...) -shuffle on
+          echo ==========
 
-    - name: Build test report
-      uses: simple-elf/allure-report-action@v1.7
-      if: always()
-      with:
-        gh_pages: gh-pages
-        allure_history: allure-history
-        allure_results: cmd/allure-verification/allure-results
+      - name: Load test report history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+          token: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Publish test report
-      uses: peaceiris/actions-gh-pages@v3
-      if: always()
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: allure-history
-        token: ${{secrets.GITHUB_TOKEN}}
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: cmd/allure-verification/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+          token: ${{secrets.GITHUB_TOKEN}}
