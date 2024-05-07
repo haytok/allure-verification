@@ -31,6 +31,11 @@ jobs:
         ls
         echo ==========
         go test -v ./...
+        echo ==========
+        go list ./...
+        echo ==========
+        go test $(go list ./...) -shuffle on
+        echo ==========
 
     - name: Load test report history
       uses: actions/checkout@v2
