@@ -25,7 +25,12 @@ jobs:
           ls
           ls cmd/allure-verification
           pwd
+          echo =====
           echo test.txt > cmd/allure-verification/test.txt
+          echo =====
           ls cmd/allure-verification
+          echo =====
           git diff --exit-code cmd/allure-verification
+          echo =====
           git diff cmd/allure-verification
+          echo =====
