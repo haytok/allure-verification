@@ -11,18 +11,18 @@ on:
   #   branches: [ "main" ]
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4.1.1
-  finch-gen-docs-generate-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check to see if documents have been created for the command
       - uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
-      - run: |
-        ls
-        pwd
-        touch cmd/allure-verification
-        git diff --exit-code cmd/allure-verification
+
+      - name: Setup
+        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+
+      - name: Install Dependencies
+        run: |
+          ls
+          pwd
+          touch cmd/allure-verification/test.txt
+          git diff --exit-code cmd/allure-verification
