@@ -11,6 +11,11 @@ on:
   #   branches: [ "main" ]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4.1.1
   finch-gen-docs-generate-check:
     runs-on: ubuntu-latest
     steps:
