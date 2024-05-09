@@ -33,4 +33,5 @@ jobs:
           git diff --exit-code cmd/allure-verification
           echo =====
           git diff cmd/allure-verification
+          git --version
           echo =====
