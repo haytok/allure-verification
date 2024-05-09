@@ -26,7 +26,7 @@ jobs:
           ls cmd/allure-verification
           pwd
           echo =====
-          echo test.txt > cmd/allure-verification/test.txt
+          echo hogehoge >> cmd/allure-verification/version.go
           echo =====
           ls cmd/allure-verification
           echo =====
