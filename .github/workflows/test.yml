@@ -25,6 +25,8 @@ jobs:
           ls
           ls cmd/allure-verification
           pwd
+          echo hoge > cmd/allure-verification/hoge.txt
+          git add -N cmd/allure-verification
           echo =====
           echo hogehoge >> cmd/allure-verification/version.go
           echo =====
